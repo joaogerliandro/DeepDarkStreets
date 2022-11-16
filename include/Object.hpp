@@ -1,27 +1,28 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <sstream>
-#include <ifstream>
+#include <config.h>
+#include <material.hpp>
+#include <mesh.hpp>
 
-#include <glm/glm.hpp>
-#include <glm/ext.hlp>
-
-using namespace DeepDarkStreets
+namespace DeepDarkStreets
 {
-   public class Object
-   {
+    class Object
+    {
         public:
-            Object();
+            Object(std::string_view objpath) 
+                : m_mesh{ objpath.data() }
+            {
+            }
 
-            Objetct(std::stringview path_stream);
-        private:
-            std::vector<glm::fvec3> vertex_list;
-            std::vector<glm::fvec2> texture_cords;
-            std::vector<glm::fvec2> normals_list;
+            Object(std::string_view objpath, std::string_view mtlpath) 
+            : m_mesh{ objpath.data() },
+              m_material{ mtlpath.data() }
+            {
 
-            std::vector<glm::fvec3> positivo;
+            }
+        protected:
+            Material m_material;
+            Mesh m_mesh;
     };
 }
 

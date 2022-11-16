@@ -5,7 +5,6 @@
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
@@ -30,3 +29,6 @@
 *.exe
 *.out
 *.app
+
+# Ignored Folders 
+/build
