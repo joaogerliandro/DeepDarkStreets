@@ -1,28 +1,23 @@
 #pragma once
 
-#include <config.h>
-#include <material.hpp>
-#include <mesh.hpp>
+#include <material.h>
+#include <mesh.h>
 
 namespace DeepDarkStreets
 {
     class Object
     {
         public:
-            Object(std::string_view objpath) 
-                : m_mesh{ objpath.data() }
-            {
-            }
-
             Object(std::string_view objpath, std::string_view mtlpath) 
-            : m_mesh{ objpath.data() },
-              m_material{ mtlpath.data() }
+            : m_mesh{ objpath },
+              m_material{ mtlpath }
             {
-
             }
         protected:
             Material m_material;
-            Mesh m_mesh;
+            Mesh     m_mesh;
+
+            glm::fvec3 position;
     };
 }
 

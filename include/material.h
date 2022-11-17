@@ -4,14 +4,13 @@
 
 namespace DeepDarkStreets
 {
-    class Mesh
+    class Material
     {
         public:
-            Mesh(std::string_view objpath)
+            Material(std::string_view mtlpath)
             {
-
             }
         protected:
 
-    }; 
+    };
 }
