@@ -7,7 +7,7 @@ namespace DeepDarkStreets
     class Material
     {
         public:
-            Material(std::string_view materialpath)
+            Material(std::string_view)
             {
             }
         protected:

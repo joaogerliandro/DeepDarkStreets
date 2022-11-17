@@ -24,12 +24,7 @@ namespace DeepDarkStreets
     class Config
     {
         public:
-            inline sf::ContextSettings get_settings()
-            {
-                return m_settings;
-            }
-
-            void load_config(std::string_view file_stream = { "config.cfg" })
+            Config(std::string_view file_stream = { "config.cfg" })
             {
                 load_default_setting();
 
@@ -52,6 +47,11 @@ namespace DeepDarkStreets
                 read_config(config_file);
 
                 config_file.close();
+            }
+
+            inline sf::ContextSettings get_settings()
+            {
+                return m_settings;
             }
 
         private:

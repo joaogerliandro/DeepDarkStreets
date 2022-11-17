@@ -1,8 +1,14 @@
-#include <object.hpp>
+#include <game.h>
 
 int main()
 {
-    std::cout << "Deep Dark Streets !" << std::endl;
+    DeepDarkStreets::Config config;
+
+    sf::Window window(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Default, config.get_settings());
+
+    DeepDarkStreets::Game main_game(window, config);
+
+    main_game.run();
 
     return {};
 }
