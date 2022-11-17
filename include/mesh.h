@@ -7,10 +7,8 @@ namespace DeepDarkStreets
     class Mesh
     {
         public:
-            Mesh(std::string_view objpath)
-            {
-            }
+            Mesh(std::string_view meshpath);
         protected:
-
+            std::vector<glm::fvec3> m_vertices;
     }; 
 }

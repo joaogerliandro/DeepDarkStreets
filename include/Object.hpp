@@ -9,8 +9,8 @@ namespace DeepDarkStreets
     {
         public:
             Object(std::string_view objpath, std::string_view mtlpath) 
-            : m_mesh{ objpath },
-              m_material{ mtlpath }
+            : m_mesh{ objpath.data() },
+              m_material{ mtlpath.data() }
             {
             }
         protected:
