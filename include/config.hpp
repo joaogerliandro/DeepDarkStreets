@@ -32,16 +32,16 @@ namespace DeepDarkStreets
 
                 if(!config_file.is_open())
                 {
-                    std::cout << "WARNING: Could not read configuration file ! Creating a new ..." << std::endl;
+                    std::cout << "[WARNING]: Could not read configuration file ! Creating a new ..." << std::endl;
 
                     config_file.open(file_stream.data(), std::fstream::in | std::fstream::out | std::fstream::trunc);
                     
                     if(!config_file.is_open())
-                        throw "ERROR: Unable to create settings file ! Leaving the program ...";
+                        throw "[ERROR]: Unable to create settings file ! Leaving the program ...";
 
                     write_cfg_template(config_file);
 
-                    std::cout << "INFO: Configuration file created !" << std::endl;
+                    std::cout << "[INFO]: Configuration file created !" << std::endl;
                 }
                 
                 read_config(config_file);

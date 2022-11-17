@@ -1,6 +1,7 @@
 #pragma once
 
 #include <object.hpp>
+#include <render.hpp>
 
 namespace DeepDarkStreets
 {
@@ -12,6 +13,9 @@ namespace DeepDarkStreets
             sf::ContextSettings get_settings();
 
             void run();
+
+        private:
+            void load_perspective();
         protected:
             //Measuring timing to help in game physics
             // sf::Clock response_clock;
@@ -31,6 +35,5 @@ namespace DeepDarkStreets
             sf::Vector2u m_window_size;
 
             glm::fvec4 m_background_color;
-            glm::fvec4 m_memorized_color; 
     };
 }

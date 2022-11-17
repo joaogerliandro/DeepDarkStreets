@@ -13,6 +13,8 @@ namespace DeepDarkStreets
         m_debug_mode  = false;
         m_degub_tools = false;
 
+        m_background_color = glm::fvec4(76.5f, 76.5f, 76.5f, 1.0f);
+
         glEnable(GL_DEPTH_TEST);
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -41,6 +43,13 @@ namespace DeepDarkStreets
                         break;
                 }
             }
+
+            load_perspective();
         }
+    }
+
+    inline void Game::load_perspective()
+    {
+        Render::load_perspective(m_window, m_window_size, m_background_color);
     }
 }
