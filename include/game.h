@@ -2,6 +2,7 @@
 
 #include <object.hpp>
 #include <render.hpp>
+#include <camera.h>
 
 namespace DeepDarkStreets
 {
@@ -15,13 +16,17 @@ namespace DeepDarkStreets
             void run();
 
         private:
-            void load_perspective();
+            inline void load_perspective();
+            inline void load_camera();
+            inline void draw_context();
+            inline void camera_movement();
         protected:
-            //Measuring timing to help in game physics
+            // Clock
             // sf::Clock response_clock;
             // sf::Clock game_clock;
+
             // Camera
-            //Camera camera;
+            Camera m_camera;
             //double rotate_angule = 0.0;
 
             //Window Options

@@ -7,7 +7,7 @@ namespace DeepDarkStreets
     class Render
     {
         public:
-            static void load_viewport(sf::Window *window, sf::Vector2u& window_size, glm::fvec4 background_color)
+            static void load_viewport(sf::Window *window, sf::Vector2u& window_size, glm::fvec4& background_color)
             {
                 window_size = window->getSize();
 
@@ -23,9 +23,11 @@ namespace DeepDarkStreets
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             }
 
-            static void load_perspective(sf::Window *window, sf::Vector2u& window_size, glm::fvec4 background_color)
+            static void load_perspective(sf::Window *window, sf::Vector2u& window_size, glm::fvec4& background_color)
             {
-                load_viewport(window, window_size, background_color);
+                load_viewport(window, window_size, background_color); 
+
+                window_size = window->getSize();
 
                 float aspect_ratio = float(window_size.x) / float(window_size.y);
                 
