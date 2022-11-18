@@ -28,7 +28,6 @@ namespace DeepDarkStreets
 
             // Camera
             Camera m_camera;
-            //double rotate_angule = 0.0;
 
             //Window Options
             Controls m_controls;

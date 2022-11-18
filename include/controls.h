@@ -8,6 +8,8 @@ namespace DeepDarkStreets
     class Controls
     {
         public: 
+            Controls();
+
             void camera_controller(Camera&, sf::Keyboard::Key);
 
             void window_controller(sf::Window&, sf::ContextSettings&, sf::Keyboard::Key);

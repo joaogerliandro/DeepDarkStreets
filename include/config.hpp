@@ -19,6 +19,8 @@
 
 #include <SFML/OpenGL.hpp>
 
+#define PI 3.14159265359
+
 namespace DeepDarkStreets
 {   
     class Config
