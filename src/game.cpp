@@ -9,10 +9,6 @@ namespace DeepDarkStreets
         m_window->setFramerateLimit(60);
         m_window->setKeyRepeatEnabled(true);
 
-        m_fullscreen  = false;
-        m_debug_mode  = false;
-        m_degub_tools = false;
-
         m_background_color = glm::fvec4(76.5f, 76.5f, 76.5f, 1.0f);
 
         glEnable(GL_DEPTH_TEST);
@@ -54,7 +50,8 @@ namespace DeepDarkStreets
 
     inline void Game::controls_handler(sf::Keyboard::Key key)
     {
-        Controls::camera_controller(m_camera, key);
+        m_controls.camera_controller(m_camera, key);
+        m_controls.window_controller(*m_window, m_settings, key);
     }
 
     inline void Game::load_perspective()

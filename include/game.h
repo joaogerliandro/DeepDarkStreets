@@ -3,7 +3,7 @@
 #include <object.hpp>
 #include <render.hpp>
 #include <camera.h>
-#include <controls.hpp>
+#include <controls.h>
 
 namespace DeepDarkStreets
 {
@@ -31,9 +31,7 @@ namespace DeepDarkStreets
             //double rotate_angule = 0.0;
 
             //Window Options
-            boolean m_fullscreen;
-            boolean m_debug_mode;
-            boolean m_degub_tools;
+            Controls m_controls;
 
             sf::ContextSettings m_settings;
 
