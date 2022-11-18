@@ -3,6 +3,7 @@
 #include <object.hpp>
 #include <render.hpp>
 #include <camera.h>
+#include <controls.hpp>
 
 namespace DeepDarkStreets
 {
@@ -19,7 +20,7 @@ namespace DeepDarkStreets
             inline void load_perspective();
             inline void load_camera();
             inline void draw_context();
-            inline void camera_movement();
+            inline void controls_handler(sf::Keyboard::Key key);
         protected:
             // Clock
             // sf::Clock response_clock;

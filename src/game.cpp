@@ -37,14 +37,12 @@ namespace DeepDarkStreets
                         m_window->close();
                         break;  
                     case sf::Event::KeyPressed:
-                        //keyboard_handler(event.key.code);
+                        controls_handler(event.key.code);
                         break;
                 }
             }
 
             load_perspective();
-
-            camera_movement();
 
             load_camera();
 
@@ -54,14 +52,14 @@ namespace DeepDarkStreets
         }
     }
 
+    inline void Game::controls_handler(sf::Keyboard::Key key)
+    {
+        Controls::camera_controller(m_camera, key);
+    }
+
     inline void Game::load_perspective()
     {
         Render::load_perspective(m_window, m_window_size, m_background_color);
-    }
-
-    inline void Game::camera_movement()
-    {
-
     }
 
     inline void Game::load_camera()

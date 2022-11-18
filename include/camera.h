@@ -10,6 +10,13 @@ namespace DeepDarkStreets
             Camera();
 
             void load_camera();
+
+            void move_camera(glm::fvec3);
+
+            inline glm::fvec3 get_eye()
+            {
+                return m_eye;
+            }
         private:
 
         protected:
