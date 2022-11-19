@@ -9,39 +9,35 @@ namespace DeepDarkStreets
 
     void Controls::camera_controller(Camera& camera, sf::Keyboard::Key key)
     {
-        glm::fvec3 cam_move = camera.get_eye();
-
         switch (key)
         {
             case sf::Keyboard::Q:
-                camera.rotate_camera(Camera::SENSE::ANTICLOCKWISE);
+                camera.update_rotation(Camera::SENSE::ANTICLOCKWISE);
                 break;
             case sf::Keyboard::E:
-                camera.rotate_camera(Camera::SENSE::CLOCKWISE);
+                camera.update_rotation(Camera::SENSE::CLOCKWISE);
                 break;
             case sf::Keyboard::W:
-                cam_move.z -= 0.5f;
+                camera.move_camera(Camera::DIRECTION::FORWARD);
                 break;
             case sf::Keyboard::S:
-                cam_move.z += 0.5f;
+                camera.move_camera(Camera::DIRECTION::BACK);
                 break;
             case sf::Keyboard::A:
-                cam_move.x -= 0.5f;
+                camera.move_camera(Camera::DIRECTION::LEFT);
                 break;
             case sf::Keyboard::D:
-                cam_move.x += 0.5f;
+                camera.move_camera(Camera::DIRECTION::RIGHT);
                 break;
             case sf::Keyboard::LControl:
             case sf::Keyboard::RControl:
-                cam_move.y -= 0.5f;
+                camera.move_camera(Camera::DIRECTION::DOWN);
                 break;
             case sf::Keyboard::LShift:
             case sf::Keyboard::RShift:
-                cam_move.y += 0.5f;
+                camera.move_camera(Camera::DIRECTION::UP);
                 break;
         }
-
-        camera.move_camera(cam_move);
     }
 
     void Controls::window_controller(sf::Window& window, sf::ContextSettings& settings, sf::Keyboard::Key key)

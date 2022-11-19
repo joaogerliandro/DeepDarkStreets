@@ -13,20 +13,30 @@ namespace DeepDarkStreets
                 ANTICLOCKWISE
             };
 
+            enum DIRECTION
+            {
+                FORWARD,
+                BACK,
+                LEFT,
+                RIGHT,
+                DOWN,
+                UP
+            };
 
             Camera();
 
             void load_camera();
 
-            void move_camera(glm::fvec3);
+            void move_camera(DIRECTION);
 
-            void rotate_camera(SENSE);
+            void update_rotation(SENSE);
 
             inline glm::fvec3 get_eye()
             {
                 return m_eye;
             }
         private:
+            void rotate_camera();
 
         protected:
             glm::fvec3 m_eye; 
