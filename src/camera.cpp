@@ -55,10 +55,10 @@ namespace DeepDarkStreets
         switch (rotation_sense)
         {
             case SENSE::CLOCKWISE:
-                m_rotate_angule -= 3.0;
+                m_rotate_angule -= 1.0;
                 break;
             case SENSE::ANTICLOCKWISE:
-                m_rotate_angule += 3.0;
+                m_rotate_angule += 1.0;
                 break;
         }
 

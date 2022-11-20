@@ -5,18 +5,13 @@ namespace DeepDarkStreets
     Controls::Controls()
     {
         m_fullscreen = false;
+        m_lock_mouse = false;
     }
 
     void Controls::camera_controller(Camera& camera, sf::Keyboard::Key key)
     {
         switch (key)
         {
-            case sf::Keyboard::Q:
-                camera.update_rotation(Camera::SENSE::ANTICLOCKWISE);
-                break;
-            case sf::Keyboard::E:
-                camera.update_rotation(Camera::SENSE::CLOCKWISE);
-                break;
             case sf::Keyboard::W:
                 camera.move_camera(Camera::DIRECTION::FORWARD);
                 break;
@@ -50,6 +45,9 @@ namespace DeepDarkStreets
             case sf::Keyboard::F11:
                 fullscreen_controller(window, settings);
                 break;
+            case sf::Keyboard::M:
+                lock_mouse(window);
+                break;
         }
     }
 
@@ -60,8 +58,35 @@ namespace DeepDarkStreets
         if (m_fullscreen)
             window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Fullscreen, settings);
         else
-            window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Default, settings);
+            window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Close, settings);
 
+        //window.setMouseCursorVisible(m_lock_mouse);
         glEnable(GL_DEPTH_TEST);
+    }
+
+    void Controls::lock_mouse(sf::Window& window)
+    {
+        m_lock_mouse = !m_lock_mouse;
+
+        //window.setMouseCursorVisible(m_lock_mouse);
+        window.setMouseCursorGrabbed(m_lock_mouse);
+    }
+
+    void Controls::mouse_controller(sf::Window& window, Camera& camera)
+    {   
+        if(m_lock_mouse)
+        {
+            sf::Vector2u window_size = window.getSize();
+            sf::Vector2i mid_point = sf::Vector2i(ceil(window_size.x / 2.0), ceil(window_size.y / 2.0));
+
+            // case sf::Keyboard::Q:
+            //     camera.update_rotation(Camera::SENSE::ANTICLOCKWISE);
+            //     break;
+            // case sf::Keyboard::E:
+            //     camera.update_rotation(Camera::SENSE::CLOCKWISE);
+            //     break;
+
+            sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y));          
+        }
     }
 }

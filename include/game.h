@@ -21,15 +21,10 @@ namespace DeepDarkStreets
             inline void load_camera();
             inline void draw_context();
             inline void controls_handler(sf::Keyboard::Key key);
+            inline void mouse_handler();
         protected:
-            // Clock
-            // sf::Clock response_clock;
-            // sf::Clock game_clock;
-
-            // Camera
             Camera m_camera;
 
-            //Window Options
             Controls m_controls;
 
             sf::ContextSettings m_settings;
