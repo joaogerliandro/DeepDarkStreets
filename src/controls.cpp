@@ -35,7 +35,7 @@ namespace DeepDarkStreets
         }
     }
 
-    void Controls::window_controller(sf::Window& window, sf::ContextSettings& settings, sf::Keyboard::Key key)
+    void Controls::window_controller(sf::RenderWindow& window, sf::ContextSettings& settings, sf::Keyboard::Key key)
     {
         switch (key)
         {
@@ -51,7 +51,7 @@ namespace DeepDarkStreets
         }
     }
 
-    void Controls::fullscreen_controller(sf::Window& window, sf::ContextSettings& settings)
+    void Controls::fullscreen_controller(sf::RenderWindow& window, sf::ContextSettings& settings)
     {
         m_fullscreen = !m_fullscreen;
 
@@ -64,7 +64,7 @@ namespace DeepDarkStreets
         glEnable(GL_DEPTH_TEST);
     }
 
-    void Controls::lock_mouse(sf::Window& window)
+    void Controls::lock_mouse(sf::RenderWindow& window)
     {
         m_lock_mouse = !m_lock_mouse;
 
@@ -72,12 +72,16 @@ namespace DeepDarkStreets
         window.setMouseCursorGrabbed(m_lock_mouse);
     }
 
-    void Controls::mouse_controller(sf::Window& window, Camera& camera)
+    void Controls::mouse_controller(sf::RenderWindow& window, Camera& camera)
     {   
         if(m_lock_mouse)
         {
             sf::Vector2u window_size = window.getSize();
             sf::Vector2i mid_point = sf::Vector2i(ceil(window_size.x / 2.0), ceil(window_size.y / 2.0));
+            sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+
+            std::cout << "Mouse X = " << mouse_position.x << std::endl;
+            std::cout << "Mid X = " << mid_point.x << std::endl;
 
             // case sf::Keyboard::Q:
             //     camera.update_rotation(Camera::SENSE::ANTICLOCKWISE);
@@ -86,7 +90,7 @@ namespace DeepDarkStreets
             //     camera.update_rotation(Camera::SENSE::CLOCKWISE);
             //     break;
 
-            sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y));          
+            //sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y));          
         }
     }
 }

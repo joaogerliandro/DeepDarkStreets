@@ -10,7 +10,7 @@ namespace DeepDarkStreets
     class Game
     {
         public:
-            Game(sf::Window&, DeepDarkStreets::Config);
+            Game(sf::RenderWindow&, DeepDarkStreets::Config);
 
             sf::ContextSettings get_settings();
 
@@ -29,8 +29,8 @@ namespace DeepDarkStreets
 
             sf::ContextSettings m_settings;
 
-            sf::Window  *m_window;
-            sf::Vector2u m_window_size;
+            sf::RenderWindow *m_window;
+            sf::Vector2u      m_window_size;
 
             glm::fvec4 m_background_color;
     };

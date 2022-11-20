@@ -13,7 +13,8 @@
 #include <glm/ext.hpp>
 
 // SFML Headers
-#include <SFML/Window/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/Event.hpp>
 

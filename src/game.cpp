@@ -2,7 +2,7 @@
 
 namespace DeepDarkStreets
 {
-    Game::Game(sf::Window& window, DeepDarkStreets::Config config)
+    Game::Game(sf::RenderWindow& window, DeepDarkStreets::Config config)
     {
         m_window = &window;
 
