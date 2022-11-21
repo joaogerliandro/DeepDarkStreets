@@ -9,8 +9,11 @@ namespace DeepDarkStreets
         public:
             enum SENSE
             {
-                CLOCKWISE,
-                ANTICLOCKWISE
+                X_CLOCKWISE,
+                X_ANTICLOCKWISE,
+                Y_CLOCKWISE,
+                Y_ANTICLOCKWISE,
+                NONE
             };
 
             enum DIRECTION
@@ -43,6 +46,6 @@ namespace DeepDarkStreets
             glm::fvec3 m_at;
             glm::fvec3 m_up;
 
-            double m_rotate_angule;
+            glm::fvec2 m_rotate_angule;
     };
 }

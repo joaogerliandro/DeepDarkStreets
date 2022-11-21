@@ -60,37 +60,59 @@ namespace DeepDarkStreets
         else
             window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Close, settings);
 
-        //window.setMouseCursorVisible(m_lock_mouse);
+        window.setMouseCursorVisible(m_lock_mouse);
         glEnable(GL_DEPTH_TEST);
     }
 
     void Controls::lock_mouse(sf::RenderWindow& window)
     {
-        m_lock_mouse = !m_lock_mouse;
-
-        //window.setMouseCursorVisible(m_lock_mouse);
+        window.setMouseCursorVisible(m_lock_mouse);
         window.setMouseCursorGrabbed(m_lock_mouse);
+
+        m_lock_mouse = !m_lock_mouse;
     }
 
     void Controls::mouse_controller(sf::RenderWindow& window, Camera& camera)
     {   
         if(m_lock_mouse)
         {
-            sf::Vector2u window_size = window.getSize();
-            sf::Vector2i mid_point = sf::Vector2i(ceil(window_size.x / 2.0), ceil(window_size.y / 2.0));
-            sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
-
-            std::cout << "Mouse X = " << mouse_position.x << std::endl;
-            std::cout << "Mid X = " << mid_point.x << std::endl;
-
-            // case sf::Keyboard::Q:
-            //     camera.update_rotation(Camera::SENSE::ANTICLOCKWISE);
-            //     break;
-            // case sf::Keyboard::E:
-            //     camera.update_rotation(Camera::SENSE::CLOCKWISE);
-            //     break;
-
-            //sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y));          
+            switch (mouse_mapper(window))
+            {
+                case Camera::SENSE::X_CLOCKWISE:
+                    camera.update_rotation(Camera::SENSE::X_CLOCKWISE);
+                    break;
+                case Camera::SENSE::X_ANTICLOCKWISE:
+                    camera.update_rotation(Camera::SENSE::X_ANTICLOCKWISE);
+                    break;
+                case Camera::SENSE::Y_CLOCKWISE:
+                    camera.update_rotation(Camera::SENSE::Y_CLOCKWISE);
+                    break;
+                case Camera::SENSE::Y_ANTICLOCKWISE:
+                    camera.update_rotation(Camera::SENSE::Y_ANTICLOCKWISE);
+                    break;
+                case Camera::SENSE::NONE:
+                    break;
+            }       
         }
+    }
+
+    Camera::SENSE Controls::mouse_mapper(sf::RenderWindow& window)
+    {
+        sf::Vector2u window_size = window.getSize();
+        sf::Vector2i mid_point = sf::Vector2i(ceil(window_size.x / 2.0), ceil(window_size.y / 2.0));
+        sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+
+        sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y)); 
+
+        if(mouse_position.x > mid_point.x + 5)
+            return Camera::SENSE::X_CLOCKWISE;
+        else if(mouse_position.x < mid_point.x - 5)
+            return Camera::SENSE::X_ANTICLOCKWISE;
+        else if(mouse_position.y > mid_point.y + 5)
+            return Camera::SENSE::Y_CLOCKWISE;
+        else if(mouse_position.y < mid_point.y - 5)
+            return Camera::SENSE::Y_ANTICLOCKWISE;
+        else
+            return Camera::SENSE::NONE;
     }
 }

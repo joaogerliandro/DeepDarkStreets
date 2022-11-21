@@ -23,6 +23,8 @@ namespace DeepDarkStreets
 
             void lock_mouse(sf::RenderWindow&);
 
+            Camera::SENSE mouse_mapper(sf::RenderWindow&);
+
         protected:
             bool m_fullscreen;
             bool m_lock_mouse;
