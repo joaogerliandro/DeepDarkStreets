@@ -41,11 +41,13 @@ namespace DeepDarkStreets
         private:
             void rotate_camera();
 
+            glm::dvec2 calculate_metrics(double);
         protected:
             glm::fvec3 m_eye; 
             glm::fvec3 m_at;
             glm::fvec3 m_up;
 
-            glm::fvec2 m_rotate_angule;
+            glm::dvec2 m_rotate_angule;
+            glm::dvec3 m_rotate_values;
     };
 }

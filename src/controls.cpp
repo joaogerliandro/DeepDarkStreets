@@ -104,13 +104,13 @@ namespace DeepDarkStreets
 
         sf::Mouse::setPosition(sf::Vector2i(mid_point.x, mid_point.y)); 
 
-        if(mouse_position.x > mid_point.x + 5)
+        if(mouse_position.x > mid_point.x + 2)
             return Camera::SENSE::X_CLOCKWISE;
-        else if(mouse_position.x < mid_point.x - 5)
+        else if(mouse_position.x < mid_point.x - 2)
             return Camera::SENSE::X_ANTICLOCKWISE;
-        else if(mouse_position.y > mid_point.y + 5)
+        else if(mouse_position.y < mid_point.y - 2)
             return Camera::SENSE::Y_CLOCKWISE;
-        else if(mouse_position.y < mid_point.y - 5)
+        else if(mouse_position.y > mid_point.y + 2)
             return Camera::SENSE::Y_ANTICLOCKWISE;
         else
             return Camera::SENSE::NONE;
