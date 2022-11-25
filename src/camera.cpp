@@ -4,9 +4,10 @@ namespace DeepDarkStreets
 {
     Camera::Camera()
     {
-        m_eye           = glm::fvec3(1.0f, 1.0f, 3.0f);
-        m_at            = glm::fvec3(m_eye.x, m_eye.y, (m_eye.z) - 2.0f);
-        m_up            = glm::fvec3(0.0f, 1.0f, 0.0f); 
+        m_eye           = glm::fvec3(1.0, 1.0, 3.0);
+        m_at            = glm::fvec3(m_eye.x, m_eye.y, (m_eye.z) - 2.0);
+        m_up            = glm::fvec3(0.0, 1.0, 0.0); 
+        m_movement_vec  = m_eye;
         m_rotate_angule = glm::dvec2(0.0, 0.0);
         m_rotate_values = glm::dvec3(0.0, 0.0, 2.0);
     }
@@ -24,31 +25,26 @@ namespace DeepDarkStreets
         switch (move_direction)
         {
             case DIRECTION::FORWARD:
-                m_eye.z -= 0.5f;
+                m_eye.z -= 0.5;
                 break;
             case DIRECTION::BACK:
-                m_eye.z += 0.5f;
+                m_eye.z += 0.5;
                 break;
             case DIRECTION::LEFT:
-                m_eye.x -= 0.5f;
+                m_eye.x -= 0.5;
                 break;
             case DIRECTION::RIGHT:
-                m_eye.x += 0.5f;
+                m_eye.x += 0.5;
                 break;
             case DIRECTION::DOWN:
-                m_eye.y -= 0.5f;
+                m_eye.y -= 0.5;
                 break;
             case DIRECTION::UP:
-                m_eye.y += 0.5f;
+                m_eye.y += 0.5;
                 break;
         }
 
-        if(m_rotate_angule.x == 0 && m_rotate_angule.y == 0)
-            m_at = glm::fvec3(m_eye.x, m_eye.y, m_eye.z - 2.0f);
-        else
-        {
-            rotate_camera();
-        }
+        rotate_camera();
     }
 
     void Camera::update_rotation(SENSE rotation_sense)
@@ -78,7 +74,7 @@ namespace DeepDarkStreets
     {
         // X-Axis Rotation
 
-        glm::dvec2 trig_metrics = calculate_metrics(m_rotate_angule.y); //Cos and Sin
+        glm::dvec2 trig_metrics = calculate_metrics(glm::radians(m_rotate_angule.y)); //Cos and Sin
         
         glm::fvec3 rotate_lookat = glm::fvec3(
             (m_rotate_values.x),
@@ -88,7 +84,7 @@ namespace DeepDarkStreets
 
         // Y-Axis Rotation
 
-        trig_metrics = calculate_metrics(m_rotate_angule.x); //Cos and Sin
+        trig_metrics = calculate_metrics(glm::radians(m_rotate_angule.x)); //Cos and Sin
 
         rotate_lookat = glm::fvec3(
             (trig_metrics.x * rotate_lookat.x) - (trig_metrics.y * rotate_lookat.z),
@@ -101,12 +97,5 @@ namespace DeepDarkStreets
             (m_eye.y) + rotate_lookat.y,
             (m_eye.z) - rotate_lookat.z
         ); 
-    }
-
-    glm::dvec2 Camera::calculate_metrics(double angle)
-    {
-        double radian = glm::radians(angle);
-
-        return glm::dvec2(cos(radian), sin(radian));
     }
 }

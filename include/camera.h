@@ -34,18 +34,23 @@ namespace DeepDarkStreets
 
             void update_rotation(SENSE);
 
-            inline glm::fvec3 get_eye()
+            inline glm::dvec3 get_eye()
             {
                 return m_eye;
             }
         private:
             void rotate_camera();
 
-            glm::dvec2 calculate_metrics(double);
+            inline glm::dvec2 calculate_metrics(double angle)
+            {
+                return glm::dvec2(cos(angle), sin(angle));
+            }
         protected:
-            glm::fvec3 m_eye; 
-            glm::fvec3 m_at;
-            glm::fvec3 m_up;
+            glm::dvec3 m_eye; 
+            glm::dvec3 m_at;
+            glm::dvec3 m_up;
+
+            glm::dvec3 m_movement_vec;
 
             glm::dvec2 m_rotate_angule;
             glm::dvec3 m_rotate_values;
