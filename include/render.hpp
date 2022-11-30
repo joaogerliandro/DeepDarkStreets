@@ -27,8 +27,6 @@ namespace DeepDarkStreets
             {
                 load_viewport(window, window_size, background_color); 
 
-                window_size = window->getSize();
-
                 float aspect_ratio = float(window_size.x) / float(window_size.y);
                 
                 glm::mat4 projection_mat = glm::perspective(45.0f, aspect_ratio, 0.1f, 500.0f);
