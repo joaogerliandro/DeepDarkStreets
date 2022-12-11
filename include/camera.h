@@ -2,6 +2,8 @@
 
 #include <config.hpp>
 
+#define CAM_SPEED 0.3
+
 namespace DeepDarkStreets
 {
     class Camera
@@ -49,8 +51,6 @@ namespace DeepDarkStreets
             glm::dvec3 m_eye; 
             glm::dvec3 m_at;
             glm::dvec3 m_up;
-
-            glm::dvec3 m_movement_vec;
 
             glm::dvec2 m_rotate_angule;
             glm::dvec3 m_rotate_values;

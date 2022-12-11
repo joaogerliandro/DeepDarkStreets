@@ -5,9 +5,8 @@ namespace DeepDarkStreets
     Camera::Camera()
     {
         m_eye           = glm::fvec3(1.0, 1.0, 3.0);
-        m_at            = glm::fvec3(m_eye.x, m_eye.y, (m_eye.z) - 2.0);
+        m_at            = glm::fvec3(m_eye.x, m_eye.y, (m_eye.z) - 1.0);
         m_up            = glm::fvec3(0.0, 1.0, 0.0); 
-        m_movement_vec  = m_eye;
         m_rotate_angule = glm::dvec2(0.0, 0.0);
         m_rotate_values = glm::dvec3(0.0, 0.0, 2.0);
     }
@@ -22,25 +21,27 @@ namespace DeepDarkStreets
 
     void Camera::move_camera(DIRECTION move_direction)
     {
+        glm::dvec3 direction = glm::dvec3(m_eye.x - m_at.x, 0.0, m_eye.z - m_at.z);
+
         switch (move_direction)
         {
             case DIRECTION::FORWARD:
-                m_eye.z -= 0.5;
+                m_eye -= direction * CAM_SPEED;
                 break;
             case DIRECTION::BACK:
-                m_eye.z += 0.5;
+                m_eye += direction * CAM_SPEED;
                 break;
             case DIRECTION::LEFT:
-                m_eye.x -= 0.5;
+                m_eye += glm::normalize(glm::cross(direction, m_up)) * CAM_SPEED;
                 break;
             case DIRECTION::RIGHT:
-                m_eye.x += 0.5;
+                m_eye -= glm::normalize(glm::cross(direction, m_up)) * CAM_SPEED;
                 break;
             case DIRECTION::DOWN:
-                m_eye.y -= 0.5;
+                m_eye.y -= CAM_SPEED;
                 break;
             case DIRECTION::UP:
-                m_eye.y += 0.5;
+                m_eye.y += CAM_SPEED;
                 break;
         }
 
