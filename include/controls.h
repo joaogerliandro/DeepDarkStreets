@@ -19,8 +19,6 @@ namespace DeepDarkStreets
             bool get_game_mode();
 
         private:
-            void fullscreen_controller(sf::RenderWindow&, sf::ContextSettings&);
-
             void lock_mouse(sf::RenderWindow&);
 
             inline void change_game_mode();

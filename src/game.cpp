@@ -13,7 +13,9 @@ namespace DeepDarkStreets
         m_background_color = glm::fvec4(76.5f, 76.5f, 76.5f, 1.0f);
 
         glEnable(GL_DEPTH_TEST);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        m_objects.clear();
+        load_objects();
     }
 
     inline sf::ContextSettings Game::get_settings()
@@ -73,11 +75,26 @@ namespace DeepDarkStreets
         m_camera.load_camera();
     }
 
-    inline void Game::draw_context()
+    void Game::draw_context()
     {
-        Render::draw_context();
+        Render::draw_context(m_objects);
 
         if(m_controls.get_game_mode())
             Render::draw_debug();
+    }
+
+    void Game::load_objects()
+    {
+        Object lantern(std::string(OBJ_PATH) + std::string("lantern.obj"), std::string(TEX_PATH) + std::string("lantern.png"));
+        lantern.set_position(1, 1, 1);
+        m_objects.push_back(lantern);
+
+        Object apartment_obj(std::string(OBJ_PATH) + std::string("apartment.obj"), std::string(TEX_PATH) + std::string("apartment.png"));
+        apartment_obj.set_position(5, 2.8, 0);
+        m_objects.push_back(apartment_obj);
+
+        Object poste_obj(std::string(OBJ_PATH) + std::string("poste.obj"), std::string(TEX_PATH) + std::string("poste.png"));
+        poste_obj.set_position(0, 0, 0);
+        m_objects.push_back(poste_obj);
     }
 }

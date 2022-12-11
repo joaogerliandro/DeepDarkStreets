@@ -19,13 +19,16 @@ namespace DeepDarkStreets
         private:
             inline void load_perspective();
             inline void load_camera();
-            inline void draw_context();
             inline void controls_handler(sf::Keyboard::Key key);
             inline void mouse_handler();
+            void draw_context();
+            void load_objects();
         protected:
             Camera m_camera;
 
             Controls m_controls;
+
+            std::vector<Object> m_objects;
 
             sf::ContextSettings m_settings;
 

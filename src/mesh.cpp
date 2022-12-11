@@ -14,9 +14,9 @@ namespace DeepDarkStreets
         std::vector<glm::fvec2> texcoord_list;
 
         glm::fvec3 vertex{};
-        glm::fvec3 texcoord{};
         glm::fvec3 normal{};
         glm::fvec3 indice{};
+        glm::fvec2 texcoord{};
 
         //Read each line of the OBJ
         for (std::string line; std::getline(filestream, line); )
@@ -67,10 +67,16 @@ namespace DeepDarkStreets
             else if (prefix == "f")
             {
                 std::size_t vertex_index{};
+                std::size_t tex_index{};
+                std::size_t norm_index{};
                 char delim{};
 
-                while (stream >> vertex_index)
+                while (stream >> vertex_index >> delim >> tex_index >> delim >> norm_index)
+                {
                     m_vertices.emplace_back(std::move(vertex_list[vertex_index - 1u]));
+                    m_normals.emplace_back(std::move(normal_list[norm_index - 1u]));
+                    m_texture.emplace_back(std::move(texcoord_list[tex_index - 1u]));
+                }
             }
         }
     }

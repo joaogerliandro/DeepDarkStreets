@@ -2,7 +2,7 @@
 
 #include <config.hpp>
 
-#define CAM_SPEED 0.3
+#define CAM_SPEED 0.5
 
 namespace DeepDarkStreets
 {

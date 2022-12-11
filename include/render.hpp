@@ -35,9 +35,11 @@ namespace DeepDarkStreets
                 glLoadMatrixf(glm::value_ptr(projection_mat));
             }
 
-            static void draw_context()
+            static void draw_context(std::vector<Object> object_list)
             {
-
+                if(!object_list.empty())
+                    for(Object& object : object_list)
+                        draw_object(object);
             }
 
             static void draw_debug()
@@ -75,6 +77,34 @@ namespace DeepDarkStreets
                 glBegin(GL_POINTS);
                     glVertex3f(0.0f, 0.0f, 0.0f);
                 glEnd();
+            }
+
+        private:
+            static void draw_object(Object& object)
+            {   
+                glColor3f(1.0f, 1.0f, 1.0f);
+                glBegin(GL_TRIANGLES);
+                    for(glm::fvec3 vertex : object.get_mesh().get_vertices())
+                        glVertex3f(
+                            vertex.x + object.get_position().x,
+                            vertex.y + object.get_position().y, 
+                            vertex.z + object.get_position().z
+                        );
+                glEnd();
+
+                glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
+                
+                glColor3f(0.0f, 0.0f, 0.0f);
+                glBegin(GL_TRIANGLES);
+                    for(glm::fvec3 vertex : object.get_mesh().get_vertices())
+                        glVertex3f(
+                            vertex.x + object.get_position().x,
+                            vertex.y + object.get_position().y, 
+                            vertex.z + object.get_position().z
+                        );
+                glEnd();
+
+                glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
             }
     };
 }

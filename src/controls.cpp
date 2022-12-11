@@ -45,9 +45,6 @@ namespace DeepDarkStreets
             case sf::Keyboard::Escape:
                 window.close();
                 break;
-            case sf::Keyboard::F11:
-                fullscreen_controller(window, settings);
-                break;
             case sf::Keyboard::M:
                 lock_mouse(window);
                 break;
@@ -55,19 +52,6 @@ namespace DeepDarkStreets
                 change_game_mode();
                 break;
         }
-    }
-
-    void Controls::fullscreen_controller(sf::RenderWindow& window, sf::ContextSettings& settings)
-    {
-        m_fullscreen = !m_fullscreen;
-
-        if (m_fullscreen)
-            window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Fullscreen, settings);
-        else
-            window.create(sf::VideoMode::getDesktopMode(), "Deep Dark Streets", sf::Style::Close, settings);
-
-        window.setMouseCursorVisible(m_lock_mouse);
-        glEnable(GL_DEPTH_TEST);
     }
 
     void Controls::lock_mouse(sf::RenderWindow& window)
