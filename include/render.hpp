@@ -34,5 +34,47 @@ namespace DeepDarkStreets
                 glMatrixMode(GL_PROJECTION);
                 glLoadMatrixf(glm::value_ptr(projection_mat));
             }
+
+            static void draw_context()
+            {
+
+            }
+
+            static void draw_debug()
+            {
+                glBegin(GL_LINES);
+                    //X Axis
+                    glColor3f(1.0f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(500.0f, 0.0f, 0.0f);
+                    glColor3f(0.5f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(-500.0f, 0.0f, 0.0f);
+
+                    //Y Axis
+                    glColor3f(0.0f, 1.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 500.0f, 0.0f);
+                    glColor3f(0.0f, 0.5f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, -500.0f, 0.0f);
+
+                    //Z Axis
+                    glColor3f(0.0f, 0.0f, 1.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 500.0f);
+                    glColor3f(0.0f, 0.0f, 0.5f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, -500.0f);
+                glEnd();
+                
+                glPointSize(12.5f);
+
+                //Origin point
+                glColor3f(0.0f, 0.0f, 0.0f);
+                glBegin(GL_POINTS);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                glEnd();
+            }
     };
 }

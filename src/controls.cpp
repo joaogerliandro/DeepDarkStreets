@@ -6,6 +6,7 @@ namespace DeepDarkStreets
     {
         m_fullscreen = false;
         m_lock_mouse = false;
+        m_debugmode  = false;
     }
 
     void Controls::camera_controller(Camera& camera, sf::Keyboard::Key key)
@@ -26,11 +27,13 @@ namespace DeepDarkStreets
                 break;
             case sf::Keyboard::LControl:
             case sf::Keyboard::RControl:
-                camera.move_camera(Camera::DIRECTION::DOWN);
+                if(m_debugmode)
+                    camera.move_camera(Camera::DIRECTION::DOWN);
                 break;
             case sf::Keyboard::LShift:
             case sf::Keyboard::RShift:
-                camera.move_camera(Camera::DIRECTION::UP);
+                if(m_debugmode)
+                    camera.move_camera(Camera::DIRECTION::UP);
                 break;
         }
     }
@@ -47,6 +50,9 @@ namespace DeepDarkStreets
                 break;
             case sf::Keyboard::M:
                 lock_mouse(window);
+                break;
+            case sf::Keyboard::B:
+                change_game_mode();
                 break;
         }
     }
@@ -70,6 +76,16 @@ namespace DeepDarkStreets
         window.setMouseCursorGrabbed(m_lock_mouse);
 
         m_lock_mouse = !m_lock_mouse;
+    }
+
+    inline void Controls::change_game_mode()
+    {
+        m_debugmode = !m_debugmode;
+    }
+    
+    bool Controls::get_game_mode()
+    {
+        return m_debugmode;
     }
 
     void Controls::mouse_controller(sf::RenderWindow& window, Camera& camera)

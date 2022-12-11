@@ -75,38 +75,9 @@ namespace DeepDarkStreets
 
     inline void Game::draw_context()
     {
-        glBegin(GL_LINES);
-            //X Axis
-            glColor3f(1.0f, 0.0f, 0.0f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(500.0f, 0.0f, 0.0f);
-            glColor3f(0.5f, 0.0f, 0.0f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(-500.0f, 0.0f, 0.0f);
+        Render::draw_context();
 
-            //Y Axis
-            glColor3f(0.0f, 1.0f, 0.0f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(0.0f, 500.0f, 0.0f);
-            glColor3f(0.0f, 0.5f, 0.0f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(0.0f, -500.0f, 0.0f);
-
-            //Z Axis
-            glColor3f(0.0f, 0.0f, 1.0f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(0.0f, 0.0f, 500.0f);
-            glColor3f(0.0f, 0.0f, 0.5f);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(0.0f, 0.0f, -500.0f);
-        glEnd();
-        
-        glPointSize(12.5f);
-
-        //Origin point
-        glColor3f(0.0f, 0.0f, 0.0f);
-        glBegin(GL_POINTS);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-        glEnd();
+        if(m_controls.get_game_mode())
+            Render::draw_debug();
     }
 }

@@ -16,17 +16,20 @@ namespace DeepDarkStreets
 
             void window_controller(sf::RenderWindow&, sf::ContextSettings&, sf::Keyboard::Key);
 
-            void set_mid_point(sf::Vector2u);
+            bool get_game_mode();
 
         private:
             void fullscreen_controller(sf::RenderWindow&, sf::ContextSettings&);
 
             void lock_mouse(sf::RenderWindow&);
 
+            inline void change_game_mode();
+
             Camera::SENSE mouse_mapper(sf::RenderWindow&);
 
         protected:
             bool m_fullscreen;
             bool m_lock_mouse;
+            bool m_debugmode;
     };
 }
