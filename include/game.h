@@ -21,6 +21,7 @@ namespace DeepDarkStreets
             inline void load_camera();
             inline void controls_handler(sf::Keyboard::Key key);
             inline void mouse_handler();
+            
             void draw_context();
             void load_objects();
         protected:

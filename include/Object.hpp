@@ -28,6 +28,11 @@ namespace DeepDarkStreets
                 return position;
             }
 
+            Material get_material()
+            {
+                return m_material;
+            }
+
             void set_position(double x, double y, double z)
             {
                 position = glm::dvec3(x, y, z);

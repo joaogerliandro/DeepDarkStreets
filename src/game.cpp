@@ -13,6 +13,8 @@ namespace DeepDarkStreets
         m_background_color = glm::fvec4(76.5f, 76.5f, 76.5f, 1.0f);
 
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
         m_objects.clear();
         load_objects();
@@ -85,16 +87,20 @@ namespace DeepDarkStreets
 
     void Game::load_objects()
     {
-        Object lantern(std::string(OBJ_PATH) + std::string("lantern.obj"), std::string(TEX_PATH) + std::string("lantern.png"));
+        Object lantern(OBJ_PATH + std::string("lantern.obj"), TEX_PATH + std::string("lantern.png"));
         lantern.set_position(1, 1, 1);
         m_objects.push_back(lantern);
 
-        Object apartment_obj(std::string(OBJ_PATH) + std::string("apartment.obj"), std::string(TEX_PATH) + std::string("apartment.png"));
-        apartment_obj.set_position(5, 2.8, 0);
+        Object apartment_obj(OBJ_PATH + std::string("apartment.obj"), TEX_PATH + std::string("apartment.png"));
+        apartment_obj.set_position(10, 2.8, 0);
         m_objects.push_back(apartment_obj);
 
-        Object poste_obj(std::string(OBJ_PATH) + std::string("poste.obj"), std::string(TEX_PATH) + std::string("poste.png"));
+        Object poste_obj(OBJ_PATH + std::string("poste.obj"), TEX_PATH + std::string("poste.png"));
         poste_obj.set_position(0, 0, 0);
         m_objects.push_back(poste_obj);
+
+        Object tree_obj(OBJ_PATH + std::string("tree.obj"), TEX_PATH + std::string("txTree.png"));
+        tree_obj.set_position(0, 0, 0);
+        m_objects.push_back(tree_obj);
     }
 }

@@ -82,29 +82,28 @@ namespace DeepDarkStreets
         private:
             static void draw_object(Object& object)
             {   
-                glColor3f(1.0f, 1.0f, 1.0f);
+                //sf::Texture::bind(object.get_material().get_txt_ref());
+
+                glBindTexture(GL_TEXTURE_2D, object.get_material().get_txt_id());
+
                 glBegin(GL_TRIANGLES);
+                    int i = 0;
                     for(glm::fvec3 vertex : object.get_mesh().get_vertices())
+                    {
+                        glTexCoord2f(
+                            object.get_mesh().get_texture()[i].x,
+                            object.get_mesh().get_texture()[i].y
+                        );
+
                         glVertex3f(
                             vertex.x + object.get_position().x,
                             vertex.y + object.get_position().y, 
                             vertex.z + object.get_position().z
                         );
-                glEnd();
 
-                glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
-                
-                glColor3f(0.0f, 0.0f, 0.0f);
-                glBegin(GL_TRIANGLES);
-                    for(glm::fvec3 vertex : object.get_mesh().get_vertices())
-                        glVertex3f(
-                            vertex.x + object.get_position().x,
-                            vertex.y + object.get_position().y, 
-                            vertex.z + object.get_position().z
-                        );
+                        i++;
+                    }
                 glEnd();
-
-                glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
             }
     };
 }
