@@ -79,28 +79,34 @@ namespace DeepDarkStreets
 
     void Game::draw_context()
     {
-        Render::draw_context(m_objects);
-
-        if(m_controls.get_game_mode())
-            Render::draw_debug();
+        Render::draw_context(m_objects, m_controls.get_game_mode());
     }
 
     void Game::load_objects()
     {
         Object lantern(OBJ_PATH + std::string("lantern.obj"), TEX_PATH + std::string("lantern.png"));
-        lantern.set_position(1, 1, 1);
+        lantern.set_position(2, 1, 0);
         m_objects.push_back(lantern);
 
         Object apartment_obj(OBJ_PATH + std::string("apartment.obj"), TEX_PATH + std::string("apartment.png"));
-        apartment_obj.set_position(10, 2.8, 0);
+        apartment_obj.set_position(12, 2.8, 0);
         m_objects.push_back(apartment_obj);
 
         Object poste_obj(OBJ_PATH + std::string("poste.obj"), TEX_PATH + std::string("poste.png"));
-        poste_obj.set_position(0, 0, 0);
+        poste_obj.set_position(-3, 0, 0);
         m_objects.push_back(poste_obj);
 
         Object tree_obj(OBJ_PATH + std::string("tree.obj"), TEX_PATH + std::string("txTree.png"));
-        tree_obj.set_position(0, 0, 0);
+        tree_obj.set_position(4, 0, 0);
         m_objects.push_back(tree_obj);
+
+        Object cub_obj(OBJ_PATH + std::string("cube.obj"), TEX_PATH + std::string("cube.png"));
+        cub_obj.set_position(0, 0, 0);
+        m_objects.push_back(cub_obj);
+
+        Object barrel_obj(OBJ_PATH + std::string("bush.obj"), TEX_PATH + std::string("txBush.png"));
+        barrel_obj.set_position(-6, 0, 0);
+        m_objects.push_back(barrel_obj);
+
     }
 }

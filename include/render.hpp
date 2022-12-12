@@ -35,11 +35,14 @@ namespace DeepDarkStreets
                 glLoadMatrixf(glm::value_ptr(projection_mat));
             }
 
-            static void draw_context(std::vector<Object> object_list)
+            static void draw_context(std::vector<Object> object_list, bool debug_mode)
             {
                 if(!object_list.empty())
                     for(Object& object : object_list)
                         draw_object(object);
+                
+                if(debug_mode)
+                    draw_debug();
             }
 
             static void draw_debug()
@@ -77,13 +80,13 @@ namespace DeepDarkStreets
                 glBegin(GL_POINTS);
                     glVertex3f(0.0f, 0.0f, 0.0f);
                 glEnd();
+
+                glBindTexture(GL_TEXTURE_2D, 0);
             }
 
         private:
             static void draw_object(Object& object)
             {   
-                //sf::Texture::bind(object.get_material().get_txt_ref());
-
                 glBindTexture(GL_TEXTURE_2D, object.get_material().get_txt_id());
 
                 glBegin(GL_TRIANGLES);
@@ -104,6 +107,8 @@ namespace DeepDarkStreets
                         i++;
                     }
                 glEnd();
+
+                glBindTexture(GL_TEXTURE_2D, 0);
             }
     };
 }
